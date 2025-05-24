@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Node.js application
+  app:
+    build: .
+    container_name: pixisphere-api
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongo:27017/pixisphere
+      - JWT_SECRET=your_jwt_secret_key_here
+      - JWT_EXPIRES_IN=7d
+    volumes:
+      - ./logs:/usr/src/app/logs
+      - ./uploads:/usr/src/app/uploads
+
+  # MongoDB service
+  mongo:
+    image: mongo:latest
+    container_name: pixisphere-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=pixisphere
+
+volumes:
+  mongo-data:

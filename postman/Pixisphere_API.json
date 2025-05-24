@@ -1,0 +1,782 @@
+{
+  "info": {
+    "name": "Pixisphere API",
+    "description": "Collection for testing Pixisphere Photography Marketplace API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User (Client)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Client\",\n  \"email\": \"client@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"9876543210\",\n  \"role\": \"client\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Register User (Partner)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Partner\",\n  \"email\": \"partner@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"9876543211\",\n  \"role\": \"partner\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Register User (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin User\",\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"9876543212\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Login (Client)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"client@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login (Partner)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"partner@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Partner",
+      "item": [
+        {
+          "name": "Create Partner Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessName\": \"PixelPerfect Photography\",\n  \"description\": \"Professional photography services for all occasions\",\n  \"address\": {\n    \"street\": \"123 Main St\",\n    \"city\": \"Mumbai\",\n    \"state\": \"Maharashtra\",\n    \"pincode\": \"400001\",\n    \"country\": \"India\"\n  },\n  \"contactEmail\": \"contact@pixelperfect.com\",\n  \"contactPhone\": \"9876543211\",\n  \"categories\": [\"wedding\", \"portrait\", \"event\"],\n  \"services\": [\n    {\n      \"name\": \"Wedding Photography\",\n      \"description\": \"Complete wedding photography package\",\n      \"priceRange\": {\n        \"min\": 25000,\n        \"max\": 100000\n      }\n    },\n    {\n      \"name\": \"Portrait Session\",\n      \"description\": \"Professional portrait photography\",\n      \"priceRange\": {\n        \"min\": 5000,\n        \"max\": 15000\n      }\n    }\n  ],\n  \"documents\": {\n    \"aadhaar\": {\n      \"number\": \"123456789012\"\n    },\n    \"pan\": {\n      \"number\": \"ABCDE1234F\"\n    },\n    \"gst\": {\n      \"number\": \"27AAPFU0939F1ZV\"\n    }\n  },\n  \"yearsOfExperience\": 5,\n  \"establishedYear\": 2018,\n  \"socialMedia\": {\n    \"instagram\": \"https://instagram.com/pixelperfect\",\n    \"facebook\": \"https://facebook.com/pixelperfect\",\n    \"website\": \"https://pixelperfect.com\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/partners/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "partners", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Get Partner Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/partners/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "partners", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Partner Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessName\": \"PixelPerfect Studios\",\n  \"description\": \"Award-winning photography services for all occasions\",\n  \"yearsOfExperience\": 6\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/partners/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "partners", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Get Partner Leads",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/partners/leads",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "partners", "leads"]
+            }
+          }
+        },
+        {
+          "name": "Respond to Lead",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"Thank you for your inquiry. We would love to work with you on your special day!\",\n  \"quotation\": {\n    \"amount\": 35000,\n    \"description\": \"Full day wedding photography package including edited photos and a photobook\",\n    \"validUntil\": \"2023-12-31T00:00:00.000Z\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/partners/leads/{{leadId}}/respond",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "partners", "leads", "{{leadId}}", "respond"]
+            }
+          }
+        },
+        {
+          "name": "Get Partner Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/partners/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "partners", "stats"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inquiry",
+      "item": [
+        {
+          "name": "Create Inquiry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"wedding\",\n  \"title\": \"Wedding Photography in Mumbai\",\n  \"description\": \"Looking for a professional photographer for my wedding ceremony and reception\",\n  \"eventDate\": \"2023-12-15T00:00:00.000Z\",\n  \"location\": {\n    \"city\": \"Mumbai\",\n    \"state\": \"Maharashtra\",\n    \"pincode\": \"400001\",\n    \"address\": \"Grand Hotel, Marine Drive\"\n  },\n  \"budget\": {\n    \"min\": 30000,\n    \"max\": 50000,\n    \"currency\": \"INR\"\n  },\n  \"referenceImageUrl\": \"https://example.com/reference-image.jpg\",\n  \"requirements\": [\"Candid shots\", \"Traditional portraits\", \"Drone coverage\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/inquiries",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inquiries"]
+            }
+          }
+        },
+        {
+          "name": "Get Client Inquiries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/inquiries",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inquiries"]
+            }
+          }
+        },
+        {
+          "name": "Get Inquiry by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/inquiries/{{inquiryId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inquiries", "{{inquiryId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Inquiry Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/inquiries/{{inquiryId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inquiries", "{{inquiryId}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "Book Partner for Inquiry",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partnerId\": \"{{partnerId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/inquiries/{{inquiryId}}/book",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "inquiries", "{{inquiryId}}", "book"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Portfolio",
+      "item": [
+        {
+          "name": "Create Portfolio",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"My Photography Portfolio\",\n  \"description\": \"A collection of my best work\",\n  \"coverImage\": \"https://example.com/cover-image.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/portfolios",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "portfolios"]
+            }
+          }
+        },
+        {
+          "name": "Get Own Portfolio",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/portfolios/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "portfolios", "me"]
+            }
+          }
+        },
+        {
+          "name": "Add Portfolio Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Beach Wedding\",\n  \"description\": \"Beautiful beach wedding in Goa\",\n  \"imageUrl\": \"https://example.com/beach-wedding.jpg\",\n  \"category\": \"wedding\",\n  \"tags\": [\"beach\", \"destination\", \"wedding\"],\n  \"featured\": true,\n  \"location\": \"Goa\",\n  \"dateShot\": \"2022-11-15T00:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/portfolios/items",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "portfolios", "items"]
+            }
+          }
+        },
+        {
+          "name": "Update Portfolio Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sunset Beach Wedding\",\n  \"description\": \"Beautiful sunset beach wedding in South Goa\",\n  \"imageUrl\": \"https://example.com/beach-wedding-updated.jpg\",\n  \"category\": \"wedding\",\n  \"tags\": [\"beach\", \"destination\", \"wedding\", \"sunset\"],\n  \"featured\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/portfolios/items/{{portfolioItemId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "portfolios", "items", "{{portfolioItemId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Portfolio Item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/portfolios/items/{{portfolioItemId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "portfolios", "items", "{{portfolioItemId}}"]
+            }
+          }
+        },
+        {
+          "name": "Reorder Portfolio Items",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{partnerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemOrders\": [\n    {\n      \"itemId\": \"{{portfolioItemId1}}\",\n      \"order\": 2\n    },\n    {\n      \"itemId\": \"{{portfolioItemId2}}\",\n      \"order\": 1\n    },\n    {\n      \"itemId\": \"{{portfolioItemId3}}\",\n      \"order\": 0\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/portfolios/reorder",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "portfolios", "reorder"]
+            }
+          }
+        },
+        {
+          "name": "Get Portfolio by Partner ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/portfolios/partner/{{partnerId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "portfolios", "partner", "{{partnerId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Get Verification Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/verifications?status=pending",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "verifications"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Verification Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\",\n  \"comment\": \"All documents verified successfully\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/verify/{{partnerId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "verify", "{{partnerId}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Pre-Wedding\",\n  \"slug\": \"pre-wedding\",\n  \"description\": \"Pre-wedding photoshoots\",\n  \"iconUrl\": \"https://example.com/icons/pre-wedding.png\",\n  \"coverImageUrl\": \"https://example.com/covers/pre-wedding.jpg\",\n  \"displayOrder\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Get Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Create Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"city\": \"Bangalore\",\n  \"state\": \"Karnataka\",\n  \"pincode\": \"560001\",\n  \"latitude\": 12.9716,\n  \"longitude\": 77.5946,\n  \"popularity\": 85\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/locations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "locations"]
+            }
+          }
+        },
+        {
+          "name": "Get Locations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/locations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "locations"]
+            }
+          }
+        },
+        {
+          "name": "Feature Partner",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"featured\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/partners/{{partnerId}}/feature",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "partners", "{{partnerId}}", "feature"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "clientToken",
+      "value": ""
+    },
+    {
+      "key": "partnerToken",
+      "value": ""
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    },
+    {
+      "key": "inquiryId",
+      "value": ""
+    },
+    {
+      "key": "partnerId",
+      "value": ""
+    },
+    {
+      "key": "leadId",
+      "value": ""
+    },
+    {
+      "key": "portfolioItemId",
+      "value": ""
+    },
+    {
+      "key": "portfolioItemId1",
+      "value": ""
+    },
+    {
+      "key": "portfolioItemId2",
+      "value": ""
+    },
+    {
+      "key": "portfolioItemId3",
+      "value": ""
+    }
+  ]
+}
