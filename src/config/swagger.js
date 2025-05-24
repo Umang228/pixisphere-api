@@ -12,7 +12,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:5000',
+        url: 'https://pixisphere-api.onrender.com',
         description: 'Local Development Server'
       }
     ],
